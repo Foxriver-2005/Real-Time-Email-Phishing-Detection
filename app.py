@@ -15,8 +15,6 @@ import pyclamd
 import base64
 import time
 
-# eyjc mqfg oyyc fzgj
-
 app = Flask(__name__)
 
 logging.basicConfig(level=logging.DEBUG)
