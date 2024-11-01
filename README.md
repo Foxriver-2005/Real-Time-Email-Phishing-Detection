@@ -83,6 +83,8 @@ Link Scanning: Each link can be scanned for threats, with results displayed next
 
 ![image](https://github.com/user-attachments/assets/ea2e8b43-b734-49ab-bbb7-caa1c19520fc)
 <br> 
+![image](https://github.com/user-attachments/assets/f7db586c-2d50-47dc-a865-4223522a0a5f)
+
 ![image](https://github.com/user-attachments/assets/fd59ad96-e21e-44c0-8551-961194872ce0)
 <br> 
 ![image](https://github.com/user-attachments/assets/143632ea-ce63-44ac-b48d-fd205103dc7e)
