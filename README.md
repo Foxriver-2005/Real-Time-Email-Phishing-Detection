@@ -90,3 +90,7 @@ Link Scanning: Each link can be scanned for threats, with results displayed next
 ![image](https://github.com/user-attachments/assets/143632ea-ce63-44ac-b48d-fd205103dc7e)
 <br> 
 The frontend of the Email Phishing Detection app is designed with usability, aesthetics, and interactivity in mind. By combining structured HTML, responsive design, and dynamic JavaScript functionality, the application provides a comprehensive tool for users to detect and analyze phishing attempts in their emails effectively. This not only helps users feel secure but also educates them about email safety in an engaging manner.
+
+
+
+
