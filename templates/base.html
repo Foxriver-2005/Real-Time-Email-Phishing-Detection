@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Email Phishing Detector{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-color: #1f1f1f;
+        font-family: "Inter", sans-serif;
+        color: #d4d4d4;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Navbar Styles */
+      .navbar {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        background-color: #111;
+        padding: 0;
+      }
+      .navbar .container {
+        padding: 15px 0;
+      }
+      .navbar .navbar-line {
+        width: 100%;
+        height: 5px;
+        background-image: linear-gradient(to right, #00ffff, #ff00bb);
+      }
+
+      .navbar-brand,
+      .nav-link {
+        position: relative;
+        left: 0;
+        margin: 0 7px;
+        color: #ffffff !important;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: color ease 0.5s, left ease 0.5s;
+      }
+      .navbar-brand {
+        font-size: 1.5rem;
+      }
+      .navbar-brand:hover {
+        left: 5px;
+      }
+
+      .navbar-brand-span1,
+      .navbar-brand-span2 {
+        transition: color ease 0.5s;
+      }
+      .navbar-brand:hover .navbar-brand-span1 {
+        color: #00ffff !important;
+      }
+      .navbar-brand:hover .navbar-brand-span2 {
+        color: #ff00bb !important;
+      }
+
+      .nav-link-1:hover {
+        color: #00ffff !important;
+      }
+      .nav-link-2:hover {
+        color: #ff00bb !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Custom Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+          <span class="navbar-brand-span1">Phishing</span>
+          <span class="navbar-brand-span2"> Detector</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link nav-link-1" href="{{ url_for('index') }}"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-2" href="{{ url_for('login') }}"
+                >Detector</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <span class="navbar-line"></span>
+    </nav>
+
+    <!-- Main content area -->
+    <div class="container mt-5 pt-5">
+      {% block content %}
+      <!-- Content overridden by child templates -->
+      {% endblock %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

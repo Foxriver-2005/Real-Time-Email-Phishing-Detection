@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phishing Email Detection System</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Typography and Colors */
+      body {
+        background-color: #1f1f1f;
+        font-family: "Inter", sans-serif;
+        color: #d4d4d4;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Navbar Styles */
+      .navbar {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        background-color: #111;
+        padding: 0;
+      }
+      .navbar .container {
+        padding: 15px 0;
+      }
+      .navbar .navbar-line {
+        width: 100%;
+        height: 5px;
+        background-image: linear-gradient(to right, #00ffff, #ff00bb);
+      }
+
+      .navbar-brand,
+      .nav-link {
+        position: relative;
+        left: 0;
+        margin: 0 7px;
+        color: #ffffff !important;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: color ease 0.5s, left ease 0.5s;
+      }
+      .navbar-brand {
+        font-size: 1.5rem;
+      }
+      .navbar-brand:hover {
+        left: 5px;
+      }
+
+      .navbar-brand-span1,
+      .navbar-brand-span2 {
+        transition: color ease 0.5s;
+      }
+      .navbar-brand:hover .navbar-brand-span1 {
+        color: #00ffff !important;
+      }
+      .navbar-brand:hover .navbar-brand-span2 {
+        color: #ff00bb !important;
+      }
+
+      .nav-link-1:hover {
+        color: #00ffff !important;
+      }
+      .nav-link-2:hover {
+        color: #ff00bb !important;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        background-image: url("https://source.unsplash.com/1600x900/?cybersecurity,technology");
+        background-size: cover;
+        background-position: center;
+        color: #ffffff;
+        padding: 150px 0;
+        text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.8);
+      }
+
+      .hero-section h1 {
+        font-size: 4rem;
+        font-weight: 700;
+      }
+
+      .hero-section p {
+        font-size: 1.25rem;
+        margin-top: 20px;
+      }
+
+      .btn-primary {
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        margin-top: 30px;
+      }
+
+      .btn-primary:hover {
+        background-color: #0056b3;
+      }
+
+      /* Features Section */
+      .features-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 0;
+        background-image: linear-gradient(to right, #00ffff, #ff00bb);
+      }
+
+      .feature {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 4% 15%;
+      }
+
+      .feature-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #222;
+        border: 2px solid transparent;
+        border-image: linear-gradient(to right, #00ffff, #ff00bb) 30% round;
+        border-image-repeat: stretch;
+        width: 15%;
+        aspect-ratio: 1 / 1;
+        font-size: 3.5rem;
+        color: #fff;
+        margin: 20px;
+      }
+
+      .feature-disc {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 70%;
+      }
+
+      .feature h3 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: #ffffff;
+      }
+
+      .feature p {
+        color: #a8a8a8;
+      }
+
+      /* How It Works Section */
+      .how-it-works-section {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        padding: 0;
+        border-radius: 8px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .how-it-works-section .container {
+        position: relative;
+        flex-grow: 1;
+        left: 0;
+        margin: 0;
+        padding: 80px 5%;
+        background-color: #171717;
+        box-shadow: 5px 0 5px 0 #111;
+      }
+
+      .how-it-works-section img {
+        min-width: 500px;
+      }
+
+      .how-it-works-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 40px;
+        color: #ffffff;
+        text-align: left;
+      }
+
+      .how-it-works-section p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #c4c4c4;
+        text-align: left;
+      }
+
+      .how-it-works-section ul {
+        list-style: none;
+        padding: 0;
+        text-align: left;
+      }
+
+      .how-it-works-section ul li {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+        color: #d4d4d4;
+        text-align: left;
+      }
+
+      /* Security Section */
+      .security-section {
+        display: flex;
+        padding: 5px 0;
+        background-image: linear-gradient(to right, #00ffff, #ff00bb);
+      }
+
+      .security-section .info {
+        background-color: #2a2a2a;
+        padding: 80px 0;
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .security-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+        color: #ffffff;
+      }
+
+      .security-section p {
+        color: #a8a8a8;
+        margin-bottom: 20px;
+      }
+
+      /* Call to Action Section */
+      .cta-section {
+        background: linear-gradient(135deg, #999 0%, #eee 100%);
+        color: #111;
+        padding: 80px 0;
+      }
+
+      .cta-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .cta-section p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+      }
+
+      .btn-primary {
+        background-color: #ffffff;
+        color: #007bff;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-size: 1.1rem;
+      }
+
+      .btn-primary:hover {
+        background-color: #f0f0f0;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #1f2937;
+        color: #ffffff;
+        padding: 40px 0;
+      }
+
+      .footer a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        color: #0d6efd;
+        text-decoration: underline;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 767px) {
+        .hero-section {
+          padding: 80px 0;
+        }
+
+        .hero-section h1 {
+          font-size: 3rem;
+        }
+
+        .hero-section p {
+          font-size: 1rem;
+        }
+
+        .cta-section h2,
+        .security-section h2,
+        .how-it-works-section h2 {
+          font-size: 2rem;
+        }
+
+        .cta-section p,
+        .security-section p,
+        .how-it-works-section p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+          <span class="navbar-brand-span1">Phishing</span>
+          <span class="navbar-brand-span2"> Detector</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link nav-link-1" href="{{ url_for('index') }}"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-2" href="{{ url_for('login') }}"
+                >Detector</a
+              >
+            </li>
+
+          </ul>
+        </div>
+      </div>
+      <span class="navbar-line"></span>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="hero-section text-center d-flex align-items-center"
+      style="
+        position: relative;
+        background-color: transparent;
+        overflow: hidden;
+      "
+    >
+      <img
+        src="../static/homepage-banner.png"
+        style="position: absolute; width: 100%; min-height: 100%; z-index: 0"
+      />
+      <div class="container" style="z-index: 1">
+        <h1>Email Phishing Detection System</h1>
+        <p>
+          Protect your inbox from phishing attacks with our advanced detection
+          system using machine learning and NLP techniques.
+        </p>
+        <a href="#start" class="btn btn-light btn-lg">Get Started</a>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section text-center">
+      <div class="row-md-4 feature" style="background-color: #111">
+        <div class="feature-icon" style="color: #ff00bb">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="col feature-disc">
+          <h3>Advanced Security</h3>
+          <p>
+            Utilizes state-of-the-art machine learning models to detect and
+            prevent phishing attempts.
+          </p>
+        </div>
+      </div>
+      <div class="row-md-4 feature" style="background-color: #151515">
+        <div class="col feature-disc">
+          <h3>Comprehensive Analysis</h3>
+          <p>
+            Analyzes email content, headers, URLs, and attachments to provide
+            thorough protection.
+          </p>
+        </div>
+        <div class="feature-icon" style="color: #00ffff">
+          <i class="fas fa-envelope-open-text"></i>
+        </div>
+      </div>
+      <div class="row-md-4 feature" style="background-color: #111">
+        <div class="feature-icon" style="color: #ff00bb">
+          <i class="fas fa-user-shield"></i>
+        </div>
+        <div class="col feature-disc">
+          <h3>User Empowerment</h3>
+          <p>
+            Educates users about phishing threats by providing detailed insights
+            into detected threats.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section text-left">
+      <div class="container">
+        <h2>How Does It Work?</h2>
+        <p>
+          Our system leverages cutting-edge machine learning algorithms and
+          natural language processing (NLP) techniques to analyze various
+          aspects of emails, including content, metadata, and attachments.
+          Here’s how we protect your inbox:
+        </p>
+        <ul class="list-unstyled">
+          <li>
+            <strong style="color: #00ffff">Email Content Analysis:</strong> We
+            scan the email text for patterns and keywords commonly associated
+            with phishing attempts.
+          </li>
+          <li>
+            <strong style="color: #ff00bb">Header Inspection:</strong> Our
+            system examines the email headers to detect spoofing and other
+            malicious activities.
+          </li>
+          <li>
+            <strong style="color: #00ffff">URL and Attachment Scanning:</strong>
+            All links and attachments are checked against a database of known
+            threats and scanned for viruses or malware.
+          </li>
+          <li>
+            <strong style="color: #ff00bb">Real-Time Updates:</strong> Our
+            detection models are continuously updated with the latest threat
+            intelligence to ensure maximum protection.
+          </li>
+        </ul>
+      </div>
+      <img src="../static/homepage_how_it_works.jpg" />
+    </section>
+
+    <!-- Security Section -->
+    <section class="security-section text-center">
+      <div class="info">
+        <div class="container">
+          <h2>Security You Can Trust</h2>
+          <p>
+            We take security seriously. Our platform is built with the highest
+            standards in cybersecurity to ensure your data and communications
+            remain safe. We use encrypted connections, secure authentication,
+            and rigorous testing to safeguard your information.
+          </p>
+          <p>
+            With our system, you can trust that your email communications are
+            protected from the latest phishing threats.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section text-center">
+      <div class="container">
+        <h2>Start Protecting Your Inbox Today</h2>
+        <p>
+          Join thousands of users who trust our phishing detection system to
+          keep their email communication secure.
+        </p>
+        <a href="#start" class="btn btn-primary btn-lg">Get Started</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+      <div class="container">
+        <p>&copy; 2024 Phishing Detector. All rights reserved.</p>
+        <p>
+          <a href="#">Privacy Policy</a> |
+          <a href="#">Terms of Service</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

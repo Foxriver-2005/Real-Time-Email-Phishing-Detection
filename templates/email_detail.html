@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Detail</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #111;
+        }
+
+        .phishing-probability {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #fff;
+            background-color: #dc3545;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .card {
+
+        }
+
+        .card-header {
+            background-color: #222;
+            border-bottom: 2px solid #e9ecef;
+            color: #fff;
+        }
+
+        .card-header h3 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .card-body {
+            background-color: #222;
+            line-height: 1.6;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background-color: #343a40;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #23272b;
+        }
+
+        .container {
+            background-color: #222;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, #00ffff, #ff00bb) 30% round;
+            border-image-repeat: stretch;
+        }
+
+        .btn-info {
+            margin-left: 10px;
+        }
+
+        #ip-details {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .btn-map {
+            margin-top: 20px;
+        }
+
+        #link-list {
+            margin-top: 10px;
+        }
+
+        .vt-result {
+            margin-left: 10px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .suspicious-reasons {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #dc3545;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between">
+            <a href="javascript:history.back()" class="btn btn-secondary mb-3">Back to Emails</a>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h3>{{ email.subject }}</h3>
+                <p><strong>From:</strong> {{ email.from }}</p>
+                <p><strong>Date:</strong> {{ email.date }}</p>
+                <p><strong>Reply Status:</strong> 
+                    <span class="badge {{ 'badge-success' if email.reply_status == 'Safe' else 'badge-warning' }}">
+                        {{ email.reply_status }}
+                    </span>
+                </p>
+                <p><strong>Phishing Probability:</strong> <span class="phishing-probability">{{ email.phishing_probability }}%</span></p>
+                
+                <button id="analyze-email" class="btn btn-info btn-sm">Analyze Email</button>
+            </div>
+            <div class="card-body">
+                <h4>IP Address:</h4>
+                <p><strong>{{ email.ip_address }}</strong></p>
+                <p id="ip-status"></p>
+
+                <div id="ip-details" style="display:none;">
+                    <h4>IP Details:</h4>
+                    <table class="table table-bordered table-dark" style="background-color: #222;">
+                        <tr><th>IP Address</th><td id="detail-ip"></td></tr>
+                        <tr><th>Type</th><td id="detail-type"></td></tr>
+                        <tr><th>Continent Name</th><td id="detail-continent"></td></tr>
+                        <tr><th>Country</th><td id="detail-country"></td></tr>
+                        <tr><th>Region</th><td id="detail-region"></td></tr>
+                        <tr><th>City</th><td id="detail-city"></td></tr>
+                        <tr><th>ZIP Code</th><td id="detail-zip"></td></tr>
+                        <tr><th>Latitude</th><td id="detail-latitude"></td></tr>
+                        <tr><th>Longitude</th><td id="detail-longitude"></td></tr>
+                        <tr><th>ISP</th><td id="detail-isp"></td></tr>
+                        <tr><th>Security Threat Level</th><td id="detail-threat"></td></tr>
+                    </table>
+                    <!-- Button to show location on Google Maps -->
+                    <button id="show-map" class="btn btn-secondary" style="display:none;" onclick="openMap()">Show on Map</button>
+                </div>
+
+                <h4>Attachments:</h4>
+                {% if email.attachments %}
+                <ul>
+                    {% for attachment in email.attachments %}
+                    <li>
+                        <strong>{{ attachment.filename }}</strong> ({{ attachment.content_type }})
+                        {% if attachment.is_malicious %}
+                        <span style="color:red;"><strong>Malicious</strong>: {{ attachment.virus_name }}</span>
+                        {% else %}
+                        <span style="color:green;"><strong>Clean</strong></span>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No attachments found.</p>
+                {% endif %}
+
+                <h4>Extracted Links:</h4>
+                <div id="link-list">
+                    {% if email.links %}
+                    <ul>
+                        {% for link in email.links %}
+                        <li>
+                            <a href="{{ link.url }}" target="_blank">{{ link.url }}</a>
+                            <span id="result-{{ loop.index }}" class="vt-result">{{ link.vt_result }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p>No links found in the email body.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('analyze-email').addEventListener('click', function() {
+            const ip = "{{ email.ip_address }}";
+            const emailId = "{{ email.id }}";
+
+            // Fetch and display IP details
+            fetch(`/api/ip-details/${ip}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('detail-ip').textContent = data.ip || 'N/A';
+                    document.getElementById('detail-type').textContent = data.type || 'N/A';
+                    document.getElementById('detail-continent').textContent = data.continent_name || 'N/A';
+                    document.getElementById('detail-country').textContent = data.country_name || 'N/A';
+                    document.getElementById('detail-region').textContent = data.region_name || 'N/A';
+                    document.getElementById('detail-city').textContent = data.city || 'N/A';
+                    document.getElementById('detail-zip').textContent = data.zip || 'N/A';
+                    document.getElementById('detail-latitude').textContent = data.latitude || 'N/A';
+                    document.getElementById('detail-longitude').textContent = data.longitude || 'N/A';
+                    document.getElementById('detail-isp').textContent = data.isp || 'N/A';
+
+                    // Display threat level with categorization
+                    const threatLevel = data.threat_level !== undefined ? data.threat_level : null;
+                    let threatCategory = 'N/A';
+                    if (threatLevel !== null) {
+                        if (threatLevel <= 40) {
+                            threatCategory = `Safe (${threatLevel}%)`;
+                        } else if (threatLevel <= 70) {
+                            threatCategory = `Suspicious (${threatLevel}%)`;
+                        } else {
+                            threatCategory = `Dangerous (${threatLevel}%)`;
+                        }
+                    }
+                    document.getElementById('detail-threat').textContent = threatCategory;
+
+                    document.getElementById('ip-details').style.display = 'block';
+
+                    // Show the "Show on Map" button if latitude and longitude are available
+                    if (data.latitude && data.longitude) {
+                        window.latitude = data.latitude;
+                        window.longitude = data.longitude;
+                        document.getElementById('show-map').style.display = 'inline-block';
+                    }
+
+                    // Display if IP is blacklisted
+                    if (data.is_blacklisted) {
+                        document.getElementById('ip-status').innerHTML = `<p style="color: red;"><strong>Warning:</strong> This IP is blacklisted in the following DNSBL(s): ${data.blacklisted_in.join(', ')}</p>`;
+                    } else {
+                        document.getElementById('ip-status').innerHTML = `<p><strong>Status:</strong> This IP is not blacklisted.</p>`;
+                    }
+                })
+                .catch(error => console.error('Error fetching IP details:', error));
+
+            // Scan links in the email
+            const links = {{ email.links|tojson }};
+            const linkList = document.getElementById('link-list');
+            linkList.innerHTML = ''; // Clear any existing content
+
+            links.forEach((link, index) => {
+                fetch(`/api/scan-link`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: link.url }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    let resultText = '';
+                    if (data.error) {
+                        resultText = `Error: ${data.error}`;
+                    } else {
+                        resultText = `Reputation: ${data.reputation}, Malicious: ${data.malicious}, Suspicious: ${data.suspicious}, Harmless: ${data.harmless}`;
+                    }
+                    linkList.innerHTML += `<li><a href="${link.url}" target="_blank">${link.url}</a> - ${resultText}</li>`;
+                })
+                .catch(error => {
+                    linkList.innerHTML += `<li><a href="${link.url}" target="_blank">${link.url}</a> - Error detecting link</li>`;
+                    console.error('Error detecting link:', error);
+                });
+            });
+        });
+
+        function openMap() {
+            if (window.latitude && window.longitude) {
+                const url = `https://www.google.com/maps?q=${window.latitude},${window.longitude}`;
+                window.open(url, '_blank');
+            }
+        }
+    </script>
+</body>
+
+</html>
