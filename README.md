@@ -29,9 +29,9 @@ The Email Phishing Detection Application is designed to identify and analyze phi
 ### Configuration
 Before running the application, ensure you have the following configurations set up:
 
-VirusTotal API Key: Replace the placeholder with your actual VirusTotal API key.
-https://www.virustotal.com/gui/home/upload
-AbuseIPDB API Key: Set your API key for checking IP addresses.
+VirusTotal API Key: Replace the placeholder with your actual VirusTotal API key. <br> 
+https://www.virustotal.com/gui/home/upload <br> 
+AbuseIPDB API Key: Set your API key for checking IP addresses. <br> 
 https://www.abuseipdb.com/account/api  <br> 
 IPAPI API Key: Place your geolocation api key <br>
 https://ipapi.com/dashboard?reset_access_key=1
@@ -42,49 +42,49 @@ Dataset link: https://www.kaggle.com/datasets/mohammadaoalhija/phishing-email
 
 ## Frontend Overview
 #### 1. Login Page (login.html)
-#### *Structure and Functionality*
-HTML Structure: The login page uses a simple form that prompts the user for their email address and app password, which are required to access their email via IMAP.
-Email Service Selection: Users can choose between Gmail and Outlook, each represented by a radio button with an accompanying logo.
-Styling: The page features a dark theme with gradients and hover effects for buttons and labels, enhancing user experience.
-Form Submission: The form submits data to the /fetch-emails endpoint, triggering the email fetching process.
-*Key Features:*
-Responsive Design: The layout adjusts for various screen sizes, ensuring usability on both desktop and mobile devices.
-Interactive Elements: The radio buttons for email services have custom styles that respond to user interaction, providing visual feedback.
+#### *Structure and Functionality* 
+HTML Structure: The login page uses a simple form that prompts the user for their email address and app password, which are required to access their email via IMAP. <br> 
+Email Service Selection: Users can choose between Gmail and Outlook, each represented by a radio button with an accompanying logo. <br> 
+Styling: The page features a dark theme with gradients and hover effects for buttons and labels, enhancing user experience. <br> 
+Form Submission: The form submits data to the /fetch-emails endpoint, triggering the email fetching process. <br> 
+*Key Features:* <br> 
+Responsive Design: The layout adjusts for various screen sizes, ensuring usability on both desktop and mobile devices. <br> 
+Interactive Elements: The radio buttons for email services have custom styles that respond to user interaction, providing visual feedback. <br> 
 
 ![image](https://github.com/user-attachments/assets/8c0735cc-9554-482e-9d35-23103331783e)
-
+<br> 
 ![image](https://github.com/user-attachments/assets/80c8190a-4a65-49de-ae72-89727c1696e8)
 
 
 ## 2. Fetched Emails Page (Email.html)
 #### *Structure and Functionality*
-Dynamic Email List: This page dynamically displays a list of fetched emails, each presented as a clickable item that reveals more information about the email.
-Email Classification: Each email item displays a phishing probability bar, color-coded based on the risk level (green for safe, yellow for suspicious, red for phishing).
-Load More Feature: Users can load more emails with a button that sends a fetch request for additional emails, enhancing performance by not loading everything at once.
-*Key Features:*
-Detail View Links: Each email links to a detailed view where users can analyze the email further.
-Responsive and Interactive Design: The hover effect makes it visually engaging, with smooth transitions when hovering over email items.
+Dynamic Email List: This page dynamically displays a list of fetched emails, each presented as a clickable item that reveals more information about the email. <br> 
+Email Classification: Each email item displays a phishing probability bar, color-coded based on the risk level (green for safe, yellow for suspicious, red for phishing). <br> 
+Load More Feature: Users can load more emails with a button that sends a fetch request for additional emails, enhancing performance by not loading everything at once. <br> 
+*Key Features:* <br> 
+Detail View Links: Each email links to a detailed view where users can analyze the email further. <br> 
+Responsive and Interactive Design: The hover effect makes it visually engaging, with smooth transitions when hovering over email items. <br> 
 
 ![image](https://github.com/user-attachments/assets/604b903d-83fb-4139-8112-49b9e43b5e6d)
-
+<br> 
 ![image](https://github.com/user-attachments/assets/31ede819-0cb2-48d6-b7bd-18778086e5cd)
 
 ## 3. Email Detail Page (email_details.html)
 #### *Structure and Functionality*
-Comprehensive Email Information: This page presents detailed information about a selected email, including the sender, date, and phishing probability.
-IP Address Analysis: Displays the sender's IP address and allows for detailed analysis, including a button to fetch and show more information about the IP.
-Attachments and Links: Lists any attachments along with their security status and any links within the email, checking their safety against external APIs.
-*Key Features:*
-Interactive Elements: Buttons allow users to trigger analyses for IP addresses and links, with results dynamically displayed without reloading the page.
-Visual Feedback: The use of badges and color-coded threat levels helps users quickly assess the safety of the email.
-Additional Features:
-Map Integration: Users can view the geographical location associated with the sender's IP address on Google Maps.
-Link Scanning: Each link can be scanned for threats, with results displayed next to the link, providing users with immediate security feedback.
+Comprehensive Email Information: This page presents detailed information about a selected email, including the sender, date, and phishing probability. <br> 
+IP Address Analysis: Displays the sender's IP address and allows for detailed analysis, including a button to fetch and show more information about the IP. <br> 
+Attachments and Links: Lists any attachments along with their security status and any links within the email, checking their safety against external APIs. <br> 
+*Key Features:* <br> 
+Interactive Elements: Buttons allow users to trigger analyses for IP addresses and links, with results dynamically displayed without reloading the page. <br> 
+Visual Feedback: The use of badges and color-coded threat levels helps users quickly assess the safety of the email. <br> 
+Additional Features: <br> 
+Map Integration: Users can view the geographical location associated with the sender's IP address on Google Maps. <br> 
+Link Scanning: Each link can be scanned for threats, with results displayed next to the link, providing users with immediate security feedback. <br> 
 
 ![image](https://github.com/user-attachments/assets/ea2e8b43-b734-49ab-bbb7-caa1c19520fc)
-
+<br> 
 ![image](https://github.com/user-attachments/assets/fd59ad96-e21e-44c0-8551-961194872ce0)
-
+<br> 
 ![image](https://github.com/user-attachments/assets/143632ea-ce63-44ac-b48d-fd205103dc7e)
-
+<br> 
 The frontend of the Email Phishing Detection app is designed with usability, aesthetics, and interactivity in mind. By combining structured HTML, responsive design, and dynamic JavaScript functionality, the application provides a comprehensive tool for users to detect and analyze phishing attempts in their emails effectively. This not only helps users feel secure but also educates them about email safety in an engaging manner.
