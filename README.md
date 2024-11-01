@@ -37,7 +37,7 @@ IPAPI API Key: Place your geolocation api key <br>
 https://ipapi.com/dashboard?reset_access_key=1
 
 ### Training Model Script Explanation (trainModel.py)
-The script is designed to train a machine learning model for detecting phishing emails. The dataset used for training is assumed to be downloaded from Kaggle, specifically a CSV file that contains email texts and their corresponding labels indicating whether they are phishing or safe.
+The script is designed to train a machine learning model for detecting phishing emails. The dataset used for training is assumed to be downloaded from Kaggle, specifically a CSV file that contains email texts and their corresponding labels indicating whether they are phishing or safe. <br> 
 Dataset link: https://www.kaggle.com/datasets/mohammadaoalhija/phishing-email
 
 ## Frontend Overview
@@ -47,7 +47,7 @@ HTML Structure: The login page uses a simple form that prompts the user for thei
 Email Service Selection: Users can choose between Gmail and Outlook, each represented by a radio button with an accompanying logo. <br> 
 Styling: The page features a dark theme with gradients and hover effects for buttons and labels, enhancing user experience. <br> 
 Form Submission: The form submits data to the /fetch-emails endpoint, triggering the email fetching process. <br> 
-*Key Features:* <br> 
+##### *Key Features:* <br> 
 Responsive Design: The layout adjusts for various screen sizes, ensuring usability on both desktop and mobile devices. <br> 
 Interactive Elements: The radio buttons for email services have custom styles that respond to user interaction, providing visual feedback. <br> 
 
@@ -61,7 +61,7 @@ Interactive Elements: The radio buttons for email services have custom styles th
 Dynamic Email List: This page dynamically displays a list of fetched emails, each presented as a clickable item that reveals more information about the email. <br> 
 Email Classification: Each email item displays a phishing probability bar, color-coded based on the risk level (green for safe, yellow for suspicious, red for phishing). <br> 
 Load More Feature: Users can load more emails with a button that sends a fetch request for additional emails, enhancing performance by not loading everything at once. <br> 
-*Key Features:* <br> 
+##### *Key Features:* <br> 
 Detail View Links: Each email links to a detailed view where users can analyze the email further. <br> 
 Responsive and Interactive Design: The hover effect makes it visually engaging, with smooth transitions when hovering over email items. <br> 
 
@@ -74,7 +74,7 @@ Responsive and Interactive Design: The hover effect makes it visually engaging, 
 Comprehensive Email Information: This page presents detailed information about a selected email, including the sender, date, and phishing probability. <br> 
 IP Address Analysis: Displays the sender's IP address and allows for detailed analysis, including a button to fetch and show more information about the IP. <br> 
 Attachments and Links: Lists any attachments along with their security status and any links within the email, checking their safety against external APIs. <br> 
-*Key Features:* <br> 
+##### *Key Features:* <br> 
 Interactive Elements: Buttons allow users to trigger analyses for IP addresses and links, with results dynamically displayed without reloading the page. <br> 
 Visual Feedback: The use of badges and color-coded threat levels helps users quickly assess the safety of the email. <br> 
 Additional Features: <br> 
