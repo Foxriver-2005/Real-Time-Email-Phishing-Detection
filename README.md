@@ -32,8 +32,8 @@ Before running the application, ensure you have the following configurations set
 VirusTotal API Key: Replace the placeholder with your actual VirusTotal API key.
 https://www.virustotal.com/gui/home/upload
 AbuseIPDB API Key: Set your API key for checking IP addresses.
-https://www.abuseipdb.com/account/api
-IPAPI API Key: Place your geolocation api key
+https://www.abuseipdb.com/account/api  <br> 
+IPAPI API Key: Place your geolocation api key <br>
 https://ipapi.com/dashboard?reset_access_key=1
 
 ### Training Model Script Explanation (trainModel.py)
