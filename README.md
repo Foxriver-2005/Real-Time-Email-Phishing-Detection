@@ -2,34 +2,34 @@
 The Email Phishing Detection Application is designed to identify and analyze phishing emails using machine learning and various APIs. The application provides a user-friendly interface for fetching emails, analyzing their content, and checking the safety of links and attachments.
 
 ### Features
-User login with email and app password
-Fetch and display emails with phishing probability
-Analyze individual emails for IP address details and link safety
-Scan attachments for viruses
-Highlight phishing areas using SHAP values for better visualization
-API endpoints for IP threat checks and URL safety checks
+1. User login with email and app password
+2. Fetch and display emails with phishing probability
+3. Analyze individual emails for IP address details and link safety
+4. Scan attachments for viruses
+5. Highlight phishing areas using SHAP values for better visualization
+6. API endpoints for IP threat checks and URL safety checks
 
 ### Technologies Used
-Python (Flask)
-Scikit-learn
-Pandas
-Joblib
-SHAP (SHapley Additive exPlanations)
-APIs (VirusTotal, AbuseIPDB,IPAPI)
-IMAP for fetching emails
+1. Python (Flask)
+2. Scikit-learn
+3. Pandas
+4. Joblib
+5. SHAP (SHapley Additive exPlanations)
+6. APIs (VirusTotal, AbuseIPDB,IPAPI)
+7. IMAP for fetching emails
 
 ### API Endpoints
-Fetch Emails: /fetch-emails (POST)
-Email Details: /email/<email_id>
-Check IP Threat: /api/ip-threat/<ip_address>
-IP Details: /api/ip-details/<ip_address>
-Detect Link: /api/detect-link (POST)
-Scan Link: /api/scan-link (POST)
+1. Fetch Emails: /fetch-emails (POST)
+2. Email Details: /email/<email_id>
+3. Check IP Threat: /api/ip-threat/<ip_address>
+4. IP Details: /api/ip-details/<ip_address>
+5. Detect Link: /api/detect-link (POST)
+6. Scan Link: /api/scan-link (POST)
 
 ### Configuration
 Before running the application, ensure you have the following configurations set up:
 
-VirusTotal API Key: Replace the placeholder with your actual VirusTotal API key. 
+VirusTotal API Key: Replace the placeholder with your actual VirusTotal API key.
 https://www.virustotal.com/gui/home/upload
 AbuseIPDB API Key: Set your API key for checking IP addresses.
 https://www.abuseipdb.com/account/api
