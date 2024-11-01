@@ -50,7 +50,9 @@ Form Submission: The form submits data to the /fetch-emails endpoint, triggering
 *Key Features:*
 Responsive Design: The layout adjusts for various screen sizes, ensuring usability on both desktop and mobile devices.
 Interactive Elements: The radio buttons for email services have custom styles that respond to user interaction, providing visual feedback.
+
 ![image](https://github.com/user-attachments/assets/8c0735cc-9554-482e-9d35-23103331783e)
+
 ![image](https://github.com/user-attachments/assets/80c8190a-4a65-49de-ae72-89727c1696e8)
 
 
@@ -62,7 +64,9 @@ Load More Feature: Users can load more emails with a button that sends a fetch r
 *Key Features:*
 Detail View Links: Each email links to a detailed view where users can analyze the email further.
 Responsive and Interactive Design: The hover effect makes it visually engaging, with smooth transitions when hovering over email items.
+
 ![image](https://github.com/user-attachments/assets/604b903d-83fb-4139-8112-49b9e43b5e6d)
+
 ![image](https://github.com/user-attachments/assets/31ede819-0cb2-48d6-b7bd-18778086e5cd)
 
 ## 3. Email Detail Page (email_details.html)
@@ -76,8 +80,11 @@ Visual Feedback: The use of badges and color-coded threat levels helps users qui
 Additional Features:
 Map Integration: Users can view the geographical location associated with the sender's IP address on Google Maps.
 Link Scanning: Each link can be scanned for threats, with results displayed next to the link, providing users with immediate security feedback.
+
 ![image](https://github.com/user-attachments/assets/ea2e8b43-b734-49ab-bbb7-caa1c19520fc)
+
 ![image](https://github.com/user-attachments/assets/fd59ad96-e21e-44c0-8551-961194872ce0)
+
 ![image](https://github.com/user-attachments/assets/143632ea-ce63-44ac-b48d-fd205103dc7e)
 
 The frontend of the Email Phishing Detection app is designed with usability, aesthetics, and interactivity in mind. By combining structured HTML, responsive design, and dynamic JavaScript functionality, the application provides a comprehensive tool for users to detect and analyze phishing attempts in their emails effectively. This not only helps users feel secure but also educates them about email safety in an engaging manner.
