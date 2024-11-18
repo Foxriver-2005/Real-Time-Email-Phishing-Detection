@@ -41,7 +41,7 @@ The script is designed to train a machine learning model for detecting phishing 
 Dataset link: https://www.kaggle.com/datasets/mohammadaoalhija/phishing-email
 
 ## Frontend Overview
-#### 1. Login Page (login.html)
+## 1. Login Page (login.html)
 #### *Structure and Functionality* 
 HTML Structure: The login page uses a simple form that prompts the user for their email address and app password, which are required to access their email via IMAP. <br> 
 Email Service Selection: Users can choose between Gmail and Outlook, each represented by a radio button with an accompanying logo. <br> 
